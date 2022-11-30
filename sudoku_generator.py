@@ -10,7 +10,7 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
       self.row_length = row_length
       self.removed_cells = removed_cells
-      self.board = [[0] * row_length for i in range(0, row_length)]
+      self.board = [[0] * row_length for i in range(row_length)]
       self.box_length = int(math.sqrt(row_length))
 
     def get_board(self):
@@ -39,7 +39,7 @@ class SudokuGenerator:
       return True
     
     def is_valid(self, row, col, num): 
-      if self.valid_in_row(row, num) and self.valid_in_col(col, num) and self.valid_in_box(row // 3 * 3, col // 3 * 3, num) == True:
+      if self.valid_in_row(row, num) and self.valid_in_col(col, num) and self.valid_in_box(row // self.box_length * self.box_length, col // self.box_length * self.box_length, num) == True:
         return True
       else:
         return False
