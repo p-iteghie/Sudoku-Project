@@ -1,0 +1,24 @@
+[[package]]
+name = "constants"
+version = "0.6.0"
+description = "The simple way to deal with environment constants."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "pygame"
+version = "2.1.2"
+description = "Python Game Development"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "cad3839a44bbce215f9a1360f461bcd0f0d8309dfb3518e0a53b27ac77b92e81"
+
+[metadata.files]
+constants = []
+pygame = []
