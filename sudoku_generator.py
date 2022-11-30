@@ -3,7 +3,6 @@ import math,random
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
 https://www.geeksforgeeks.org/program-sudoku-generator/
-
 """
 
 class SudokuGenerator:
@@ -89,7 +88,7 @@ class SudokuGenerator:
         self.fill_diagonal()
         self.fill_remaining(0, self.box_length)
 
-    def remove_cells(self):
+    def remove_cells(self):  # Remove cells from the sudoku board.
       cells_to_remove = self.removed_cells
       while cells_to_remove > 0:
         current_row = random.randint(0, self.row_length - 1)
