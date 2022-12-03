@@ -1,4 +1,10 @@
+import sys
+
 import sudoku_generator as sg
+from cell import Cell
+from board import Board
+import pygame
+from constants import *
 # test file
 
 def printBoardConsole(board):
@@ -10,8 +16,30 @@ def printBoardConsole(board):
   
 def main():
   hi = sg.generate_sudoku(9, 1)
-  printBoardConsole(hi)  
-  
+  printBoardConsole(hi)
+  cell_list = []
+  # for Board.draw()
+  for row_num, row in enumerate(hi):
+    for col_num, i in enumerate(row):
+      cell_list.append(Cell(i, row_num, col_num, 5))
+  for i in cell_list:
+    print(i.value, i.row, i.col)
+
+  '''pygame.init()
+  screen = pygame.display.set_mode((WIDTH, HEIGHT))
+  pygame.display.set_caption("Welcome to Sudoku!")
+  screen.fill(BG_COLOR)
+
+  while True:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+      if event.type == pygame.KEYDOWN:
+        print(event.unicode)
+    pygame.display.update()'''
+
+
 if __name__ == '__main__':
   main()
 
