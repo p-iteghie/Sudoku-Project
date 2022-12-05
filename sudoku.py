@@ -1,31 +1,12 @@
 import sys
-
 import sudoku_generator as sg
 from cell import Cell
 from board import Board
 import pygame
 from constants import *
-# test file
 
-def printBoardConsole(board):
-  print('-'*29)
-  for i, row in enumerate(board):
-    print(row[:3], row[3:6], row[6:])
-    if i % 3 == 2:
-      print('-' * 29) 
-  
+
 def main():
-  hi = sg.generate_sudoku(9, 1)
-  printBoardConsole(hi)
-  cell_list = []
-
-  # for Board.draw()
-  for row_num, row in enumerate(hi):
-    for col_num, i in enumerate(row):
-      cell_list.append(Cell(i, row_num, col_num, 5))
-  for i in cell_list:
-    print(i.value, i.row, i.col)
-
   pygame.init()
   screen = pygame.display.set_mode((WIDTH, HEIGHT))
   pygame.display.set_caption("Sudoku")
@@ -36,9 +17,9 @@ def main():
 
   title = title_font.render("Welcome to Sudoku!", True, TEXT_COLOR)
   select = select_font.render("Select a Game Mode:", True, TEXT_COLOR)
-  easy_mode = mode_font.render("EASY", True, TEXT_COLOR)
-  medium_mode = mode_font.render("MEDIUM", True, TEXT_COLOR)
-  hard_mode = mode_font.render("HARD", True, TEXT_COLOR)
+  easy_mode = mode_font.render("EASY", True, BG_COLOR)
+  medium_mode = mode_font.render("MEDIUM", True, BG_COLOR)
+  hard_mode = mode_font.render("HARD", True, BG_COLOR)
 
   mode_buttons_border = [pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, 400, BUTTON_WIDTH, BUTTON_HEIGHT),
                          pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, 400 + BUTTON_HEIGHT + 20, BUTTON_WIDTH, BUTTON_HEIGHT),
@@ -59,14 +40,19 @@ def main():
         print(event.unicode)
       if event.type == pygame.MOUSEBUTTONDOWN:
         if easy_button.collidepoint(event.pos):
-          print('hi1')
+          pygame.time.wait(200)
+          board = Board(WIDTH, HEIGHT, screen, 1)
+          screen_type = 'play_game'
         elif medium_button.collidepoint(event.pos):
-          print('hi2')
+          pygame.time.wait(200)
+          board = Board(WIDTH, HEIGHT, screen, 2)
+          screen_type = 'play_game'
         elif hard_button.collidepoint(event.pos):
-          print('hi3')
-        else:
-          print('bye')
+          pygame.time.wait(200)
+          board = Board(WIDTH, HEIGHT, screen, 3)
+          screen_type = 'play_game'
     screen.fill(BG_COLOR)
+
     if screen_type == 'welcome_screen':
       screen.blit(title, ((WIDTH - title.get_rect().width) / 2, 100))
       screen.blit(select, ((WIDTH - select.get_rect().width) / 2, 350))
@@ -74,14 +60,16 @@ def main():
       for button in mode_buttons_border:
         pygame.draw.rect(screen, TEXT_COLOR, button)
 
-      pygame.draw.rect(screen, BG_COLOR, easy_button)
-      pygame.draw.rect(screen, BG_COLOR, medium_button)
-      pygame.draw.rect(screen, BG_COLOR, hard_button)
+      pygame.draw.rect(screen, BUTTON_COLOR, easy_button)
+      pygame.draw.rect(screen, BUTTON_COLOR, medium_button)
+      pygame.draw.rect(screen, BUTTON_COLOR, hard_button)
 
       screen.blit(easy_mode, ((WIDTH - easy_mode.get_rect().width) / 2, 400 + (BUTTON_HEIGHT - easy_mode.get_rect().height) / 2))
       screen.blit(medium_mode, ((WIDTH - medium_mode.get_rect().width) / 2, 400 + BUTTON_HEIGHT + 20 + (BUTTON_HEIGHT - easy_mode.get_rect().height) / 2))
       screen.blit(hard_mode, ((WIDTH - hard_mode.get_rect().width) / 2, 400 + (BUTTON_HEIGHT + 20) * 2 + (BUTTON_HEIGHT - easy_mode.get_rect().height) / 2))
 
+    if screen_type == 'play_game':
+      board.draw()
     pygame.display.update()
 
 
