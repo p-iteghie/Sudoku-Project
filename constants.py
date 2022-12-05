@@ -1,3 +1,5 @@
+# Constants that are used throughout the code for specific, reused values
+# such as colors and dimesions
 CELL_DIM = 70
 WIDTH = CELL_DIM * 9
 HEIGHT = CELL_DIM * 10

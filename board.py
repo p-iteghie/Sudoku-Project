@@ -4,6 +4,7 @@ import pygame
 import sudoku_generator as sg
 
 class Board:
+  # define attributes of board and make a temporary board for checking
   def __init__(self, width, height, screen, difficulty):
     self.width = width
     self.height = height
@@ -16,11 +17,13 @@ class Board:
     elif difficulty == 3:
       self.board = sg.generate_sudoku(9, 50)
 
+    # define cell_list to check values in the board
     self.cell_list = []
     for row_num, row in enumerate(self.board):
       for col_num, i in enumerate(row):
         self.cell_list.append(Cell(i, row_num, col_num, self.screen))
 
+  # define rectangles inside board
   def draw(self):
     for y in range(3):
       for x in range(3):
@@ -29,13 +32,15 @@ class Board:
             
     for i in self.cell_list:
       i.draw()
-      
+
+  # check if one 9x9 is filled inside the board
   def is_filled(self):
     for cell in self.cell_list:
       if cell.value == 0:
         return False
     return True
 
+  # check if the board is filled, valid, and therefore won
   def check_win(self):
     self.temp_board.board = self.board
     for row_num, row in enumerate(self.temp_board.board):
