@@ -22,10 +22,10 @@ class Board:
 
   def draw(self):
     # test drawing
-    for y in range(1,4):
-      for x in range(1,4):
-        group = pygame.Rect(CELL_DIM*3, CELL_DIM*3, CELL_DIM*x, CELL_DIM*y)
-        pygame.draw.rect(self.screen, BUTTON_COLOR, group, CELL_BORDER)
+    for y in range(3):
+      for x in range(3):
+        group = pygame.Rect(CELL_DIM * 3 * x, CELL_DIM * 3 * y, CELL_DIM * 3, CELL_DIM * 3)
+        pygame.draw.rect(self.screen, TEXT_COLOR, group, CELL_BORDER)
         # self.cell_list[1].draw()
 
     #pygame.draw.rect(self.screen, BUTTON_COLOR, [(WIDTH - BUTTON_WIDTH + BUTTON_BORDER) / 2, 400 + BUTTON_BORDER / 2, BUTTON_WIDTH - BUTTON_BORDER, BUTTON_HEIGHT - BUTTON_BORDER])

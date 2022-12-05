@@ -52,8 +52,8 @@ BUTTON_HEIGHT),
           screen_type = 'play_game'
         elif screen_type == 'play_game':
           for box in board.cell_list:
-            if box.collidepoint(event.pos):
-              print(1)
+            if box.cell.collidepoint(event.pos):
+              box.color = CELL_BORDER_HIGHLIGHTED
     screen.fill(BG_COLOR)
 
     if screen_type == 'welcome_screen':
