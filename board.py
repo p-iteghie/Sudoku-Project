@@ -10,7 +10,7 @@ class Board:
     self.screen = screen
     self.temp_board = sg.SudokuGenerator(9,0)
     if difficulty == 1:
-      self.board = sg.generate_sudoku(9, 1)
+      self.board = sg.generate_sudoku(9, 30)
     elif difficulty == 2:
       self.board = sg.generate_sudoku(9, 40)
     elif difficulty == 3:
@@ -38,19 +38,9 @@ class Board:
 
   def check_win(self):
     self.temp_board.board = self.board
-    for cell in self.cell_list:
-      self.temp_board.board[cell.row][cell.col] = int(cell.value)
-    print(self.temp_board.board)
-
     for row_num, row in enumerate(self.temp_board.board):
-      print(row)
-      for col_num, num in enumerate(row):
-        print(row_num, col_num)
-        print(num)
-        if not self.temp_board.is_valid(row_num, col_num, num):
-          print('lose')
-          # return False
-    print('win')
+      for col_num, val in enumerate(row):
+        if self.temp_board.board[row_num][col_num] == 0:
+          if not self.temp_board.is_valid(row_num, col_num, int(self.cell_list[row_num*9 + col_num].value)):
+            return False
     return True
-
-    

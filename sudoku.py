@@ -89,12 +89,14 @@ def main():
                                 if box.sketch != 0:
                                     box.set_cell_value(box.sketch)
                                     box.sketch = 0
+                        if board.is_filled() and screen_type == 'play_game':
+                            if board.check_win():
+                                screen_type = 'win_screen'
+                            else:
+                                screen_type = 'lose_screen'
+
+
                                     # submitting a guess
-                        if board.is_filled():
-                          if board.check_win():
-                              screen_type = 'win_screen'
-                          else:
-                              screen_type = 'lose_screen'
 
 
         screen.fill(BG_COLOR)
@@ -167,18 +169,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-'''
-bens mistake ignore this pls (he doesn't want to delete his embarrasment -pat)(i put too much work i cant just delete it... -ben)
-print('---------------------------') 
-i=0
-while i<9:
-  j=0
-  while j<3:
-    k = i % 3
-
-    print(hi[j][(3*k):(3*(k+1))], end ='')
-    j+=1
-  print('\n---------------------------') if i%3 == 2 else print()
-  i += 1
-'''
