@@ -38,22 +38,29 @@ BUTTON_HEIGHT),
         pygame.quit()
         sys.exit()
       if event.type == pygame.MOUSEBUTTONDOWN:
-        if easy_button.collidepoint(event.pos):
-          pygame.time.wait(200)
-          board = Board(WIDTH, HEIGHT, screen, 1)
-          screen_type = 'play_game'
-        elif medium_button.collidepoint(event.pos):
-          pygame.time.wait(200)
-          board = Board(WIDTH, HEIGHT, screen, 2)
-          screen_type = 'play_game'
-        elif hard_button.collidepoint(event.pos):
-          pygame.time.wait(200)
-          board = Board(WIDTH, HEIGHT, screen, 3)
-          screen_type = 'play_game'
+        if screen_type == 'welcome_screen':
+          if easy_button.collidepoint(event.pos):
+            pygame.time.wait(200)
+            board = Board(WIDTH, HEIGHT, screen, 1)
+            screen_type = 'play_game'
+          elif medium_button.collidepoint(event.pos):
+            pygame.time.wait(200)
+            board = Board(WIDTH, HEIGHT, screen, 2)
+            screen_type = 'play_game'
+          elif hard_button.collidepoint(event.pos):
+            pygame.time.wait(200)
+            board = Board(WIDTH, HEIGHT, screen, 3)
+            screen_type = 'play_game'
         elif screen_type == 'play_game':
           for box in board.cell_list:
-            if box.cell.collidepoint(event.pos):
+            if box.cell.collidepoint(event.pos) and box.editable:
               box.color = CELL_BORDER_HIGHLIGHTED
+      if event.type == pygame.KEYDOWN:
+        if screen_type == 'play_game':
+          for box in board.cell_list:
+            if box.color == CELL_BORDER_HIGHLIGHTED:
+              if event.unicode in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
+                box.sketch = event.unicode
     screen.fill(BG_COLOR)
 
     if screen_type == 'welcome_screen':

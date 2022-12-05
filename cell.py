@@ -11,6 +11,12 @@ class Cell:
     self.value_drawn = value_font.render(str(value), True, TEXT_COLOR)
     self.cell = pygame.Rect(self.col * CELL_DIM, self.row * CELL_DIM, CELL_DIM, CELL_DIM)
     self.color = CELL_BORDER_UNHIGHLIGHTED
+    self.sketch = 0
+    if value != 0:
+      self.editable = False
+    else:
+      self.editable = True
+
 
   def set_cell_value(self, value):
     self.value = value
@@ -19,10 +25,12 @@ class Cell:
     self.value = value
 
   def draw(self):
-    pygame.draw.rect(self.screen, self.color, self.cell, CELL_BORDER)
-    # display value in cell if the value is not zero
-    #TEST BELOW SHOWS A VALUE JUST NOT IN RIGHT SPOT
-    self.screen.blit(self.value_drawn, (self.col * CELL_DIM, self.row * CELL_DIM))
-    # if the value is zero, do not display anything
+    pygame.draw.rect(self.screen, self.color, self.cell, int(CELL_BORDER / 2))
+    sketch_font = pygame.font.Font("Luciole-Regular.ttf", 30)
+    sketch_drawn = sketch_font.render(str(self.sketch), True, BUTTON_COLOR)
 
-    # outline cell in red if selected by user
+    if self.value != 0:
+      self.screen.blit(self.value_drawn, (self.col * CELL_DIM + (36 / 2), self.row * CELL_DIM + (34 / 2)))
+    if self.sketch != 0:
+      self.screen.blit(sketch_drawn, (self.col * CELL_DIM + 3, self.row * CELL_DIM + 3))
+
