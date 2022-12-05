@@ -10,7 +10,7 @@ class Cell:
     value_font = pygame.font.Font("Luciole-Bold.ttf", 50)
     self.value_drawn = value_font.render(str(value), True, TEXT_COLOR)
 
-  def set_CELL_value(self, value):
+  def set_cell_value(self, value):
     self.value = value
 
   def set_sketched_value(self, value):
@@ -28,11 +28,16 @@ class Cell:
     for event in pygame.event.get():
       if event.type == pygame.MOUSEBUTTONDOWN:
         if cell.collidepoint(event.pos):
-          print("1!")
+          active = True
         else:
-          print("2!")
+          active = False
+
+    if active:
+      color = CELL_BORDER_HIGHLIGHTED
+    else:
+      color = CELL_BORDER_UNHIGHLIGHTED
     
-    pygame.draw.rect(screen, color, cell)
+    pygame.draw.rect(self.screen, color, cell)
     # display value in cell if the value is not zero
     #TEST BELOW SHOWS A VALUE JUST NOT IN RIGHT SPOT
     self.screen.blit(self.value_drawn, (self.col * CELL_DIM, self.row * CELL_DIM))
