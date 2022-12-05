@@ -36,8 +36,6 @@ def main():
       if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
-      if event.type == pygame.KEYDOWN:
-        print(event.unicode)
       if event.type == pygame.MOUSEBUTTONDOWN:
         if easy_button.collidepoint(event.pos):
           pygame.time.wait(200)
