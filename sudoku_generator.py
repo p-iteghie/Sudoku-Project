@@ -38,7 +38,7 @@ class SudokuGenerator:
       return True
     
     def is_valid(self, row, col, num):  # Checks if given number is valid in given position.
-      if self.valid_in_row(row, num) and self.valid_in_col(col, num) and self.valid_in_box(row // self.box_length * self.box_length, col // self.box_length * self.box_length, num) == True:
+      if self.valid_in_row(row, num) and self.valid_in_col(col, num) and self.valid_in_box(row // self.box_length * self.box_length, col // self.box_length * self.box_length, num):
         return True
       else:
         return False

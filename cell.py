@@ -8,7 +8,7 @@ class Cell:
     self.col = col
     self.screen = screen
     self.value_font = pygame.font.Font("Luciole-Regular.ttf", 50)
-    self.value_drawn = value_font.render(str(value), True, TEXT_COLOR)
+    self.value_drawn = self.value_font.render(str(value), True, TEXT_COLOR)
     self.cell = pygame.Rect(self.col * CELL_DIM, self.row * CELL_DIM, CELL_DIM, CELL_DIM)
     self.color = CELL_BORDER_UNHIGHLIGHTED
     self.sketch = 0
