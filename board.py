@@ -24,7 +24,8 @@ class Board:
     # test drawing
     for y in range(1,4):
       for x in range(1,4):
-        group = pygame.Rect(CELL_DIM, CELL_DIM, (CELL_DIM*x) - 1, (CELL_DIM*y)-1)
-        self.cell_list[1].draw()
+        group = pygame.Rect(CELL_DIM*3, CELL_DIM*3, CELL_DIM*x, CELL_DIM*y)
+        pygame.draw.rect(self.screen, BUTTON_COLOR, group, CELL_BORDER)
+        # self.cell_list[1].draw()
 
     #pygame.draw.rect(self.screen, BUTTON_COLOR, [(WIDTH - BUTTON_WIDTH + BUTTON_BORDER) / 2, 400 + BUTTON_BORDER / 2, BUTTON_WIDTH - BUTTON_BORDER, BUTTON_HEIGHT - BUTTON_BORDER])

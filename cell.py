@@ -19,9 +19,23 @@ class Cell:
   def draw(self):
     # draw cell with value inside
     cell = pygame.Rect(CELL_DIM, CELL_DIM, self.col * CELL_DIM, self.row * CELL_DIM)
+
+
+    # color variable to see if cell is selected
+    color = CELL_BORDER_UNHIGHLIGHTED
+    active = False
+
+    for event in pygame.event.get():
+      if event.type == pygame.MOUSEBUTTONDOWN:
+        if cell.collidepoint(event.pos):
+          print("1!")
+        else:
+          print("2!")
+    
+    pygame.draw.rect(screen, color, cell)
     # display value in cell if the value is not zero
     #TEST BELOW SHOWS A VALUE JUST NOT IN RIGHT SPOT
-    self.screen.blit(self.value_drawn, (self.col * CELL_DIM, self.row * CELL_DIM)
+    self.screen.blit(self.value_drawn, (self.col * CELL_DIM, self.row * CELL_DIM))
     # if the value is zero, do not display anything
 
     # outline cell in red if selected by user
