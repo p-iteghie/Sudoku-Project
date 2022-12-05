@@ -41,9 +41,9 @@ def main():
     restart_option = option_font.render("RESTART", True, BG_COLOR)
     exit_option = option_font.render("EXIT", True, BG_COLOR)
 
-    reset_button = pygame.Rect(15, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
-    restart_button = pygame.Rect(225, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
-    exit_button = pygame.Rect(435, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
+    reset_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2 - 200, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
+    restart_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
+    exit_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2 + 200, CELL_DIM * 9 + 10, BUTTON_WIDTH, BUTTON_HEIGHT)
 
     screen_type = 'welcome_screen'
 
@@ -69,8 +69,8 @@ def main():
                 elif screen_type == 'play_game':
                     if reset_button.collidepoint(event.pos):  # clears the board
                         for box in board.cell_list:
-                            box.sketch = ""
-                            # add code to clear submitted guesses or reset somehow
+                            if box.editable:
+                                box.sketch, box.value = 0, 0
                     if restart_button.collidepoint(event.pos):  # returns Game Start screen
                         screen_type = 'welcome_screen'
                     if exit_button.collidepoint(event.pos):  # ends the program
@@ -129,10 +129,19 @@ def main():
             pygame.draw.rect(screen, TEXT_COLOR, exit_button, 2)
 
             # text on buttons
-            screen.blit(reset_option, ((BUTTON_WIDTH / 2 - 20), (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
-            screen.blit(restart_option, ((BUTTON_WIDTH / 2 + 170), (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
-            screen.blit(exit_option, ((BUTTON_WIDTH / 2 + 400), (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
+            screen.blit(reset_option, ((WIDTH - reset_option.get_rect().width) / 2 - 200, (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
+            screen.blit(restart_option, ((WIDTH - restart_option.get_rect().width) / 2, (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
+            screen.blit(exit_option, ((WIDTH - exit_option.get_rect().width) / 2 + 200, (CELL_DIM * 9 + BUTTON_HEIGHT / 2)))
 
+            # if screen_type == 'lose_screen':
+        #     game_over = GAME_OVER_FONT.render("GAME OVER", True, TEXT_COLOR)
+        #     restart_button = pygame.Rect(WIDTH/2, HEIGHT/2, BUTTON_WIDTH, BUTTON_HEIGHT)
+        #     pygame.draw.rect(screen, BUTTON_COLOR, restart_button)
+        #     pygame.draw.rect(screen, TEXT_COLOR, restart_button, 2)
+        # 
+        # if screen_type == 'win_screen':
+        #     pass
+        
         pygame.display.update()
 
 
