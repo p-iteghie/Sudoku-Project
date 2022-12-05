@@ -17,7 +17,7 @@ class Cell:
     self.value = value
 
   def draw(self):
-    self.screen.blit(self.value_drawn, ((WIDTH - self.value_drawn.get_rect().width) / 2, 400 + (BUTTON_HEIGHT - self.value_drawn.get_rect().height) / 2))
+    self.screen.blit(self.value_drawn,((WIDTH - self.value_drawn.get_rect().width) / 2, 400 + (BUTTON_HEIGHT - self.value_drawn.get_rect().height) / 2))
     # draw cell with value inside
     
     # display value in cell if the value is not zero
