@@ -50,6 +50,10 @@ BUTTON_HEIGHT),
           pygame.time.wait(200)
           board = Board(WIDTH, HEIGHT, screen, 3)
           screen_type = 'play_game'
+        elif screen_type == 'play_game':
+          for box in board.cell_list:
+            if box.collidepoint(event.pos):
+              print(1)
     screen.fill(BG_COLOR)
 
     if screen_type == 'welcome_screen':
