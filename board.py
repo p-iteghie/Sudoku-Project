@@ -28,3 +28,5 @@ class Board:
             
     for i in self.cell_list:
       i.draw()
+
+    

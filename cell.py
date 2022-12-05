@@ -20,9 +20,11 @@ class Cell:
 
   def set_cell_value(self, value):
     self.value = value
+    value_font = pygame.font.Font("Luciole-Regular.ttf", 50)
+    self.value_drawn = value_font.render(str(self.value), True, TEXT_COLOR)
 
-  def set_sketched_value(self, value):
-    self.value = value
+  '''def set_sketched_value(self, value):
+    self.value = value'''
 
   def draw(self):
     pygame.draw.rect(self.screen, self.color, self.cell, int(CELL_BORDER / 2))
