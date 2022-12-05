@@ -90,6 +90,11 @@ def main():
                                     box.set_cell_value(box.sketch)
                                     box.sketch = 0
                                     # submitting a guess
+                        if board.is_filled():
+                          if board.check_win():
+                              screen_type = 'win_screen'
+                          else:
+                              screen_type = 'lose_screen'
 
 
         screen.fill(BG_COLOR)

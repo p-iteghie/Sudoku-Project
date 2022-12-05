@@ -8,8 +8,9 @@ class Board:
     self.width = width
     self.height = height
     self.screen = screen
+    self.temp_board = sg.SudokuGenerator(9,0)
     if difficulty == 1:
-      self.board = sg.generate_sudoku(9, 30)
+      self.board = sg.generate_sudoku(9, 1)
     elif difficulty == 2:
       self.board = sg.generate_sudoku(9, 40)
     elif difficulty == 3:
