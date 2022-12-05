@@ -7,6 +7,8 @@ class Cell:
     self.row = row
     self.col = col
     self.screen = screen
+    value_font = pygame.font.Font("Luciole-Bold.ttf", 50)
+    self.value_drawn = value_font.render(str(value), True, TEXT_COLOR)
 
   def set_cell_value(self, value):
     self.value = value
@@ -15,7 +17,7 @@ class Cell:
     self.value = value
 
   def draw(self):
-    pass
+    self.screen.blit(self.value_drawn, ((WIDTH - self.value_drawn.get_rect().width) / 2, 400 + (BUTTON_HEIGHT - self.value_drawn.get_rect().height) / 2))
     # draw cell with value inside
     
     # display value in cell if the value is not zero
