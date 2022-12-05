@@ -18,10 +18,10 @@ class Cell:
 
   def draw(self):
     # draw cell with value inside
-    cell = pygame.Rect(CELL_DIM, CELL_DIM, CELL_DIM - CELL_BORDER, CELL_DIM - CELL_BORDER)
+    cell = pygame.Rect(CELL_DIM, CELL_DIM, self.col * CELL_DIM, self.row * CELL_DIM)
     # display value in cell if the value is not zero
     #TEST BELOW SHOWS A VALUE JUST NOT IN RIGHT SPOT
-    self.screen.blit(self.value_drawn, ((WIDTH - self.value_drawn.get_rect().width) / 2, 400 + (CELL_HEIGHT - self.value_drawn.get_rect().height) / 2))
+    self.screen.blit(self.value_drawn, (self.col * CELL_DIM, self.row * CELL_DIM)
     # if the value is zero, do not display anything
 
     # outline cell in red if selected by user
