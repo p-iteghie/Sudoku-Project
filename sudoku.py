@@ -1,6 +1,4 @@
 import sys
-import sudoku_generator as sg
-from cell import Cell
 from board import Board
 import pygame
 from constants import *
